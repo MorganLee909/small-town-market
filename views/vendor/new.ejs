@@ -8,6 +8,10 @@
         <link rel="stylesheet" href="./new.css">
     </head>
     <body>
+        <% if(error){ %>
+            <h3><%= error %></h3>
+        <% } %>
+        
         <h1>NEW VENDOR</h1>
 
         <form action="/vendor" method="post">
@@ -21,6 +25,22 @@
 
             <label>OWNER LAST NAME:
                 <input type="text" name="lastName" required>
+            </label>
+
+            <label>EMAIL:
+                <input type="email" name="email" required>
+            </label>
+
+            <label>STATE:
+                <input type="string" name="state" required>
+            </label>
+
+            <label>COUNTY:
+                <input type="string" name="county" required>
+            </label>
+
+            <label>CITY/TOWN:
+                <input type="string" name="city" required>
             </label>
 
             <label>PASSWORD:
