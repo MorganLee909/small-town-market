@@ -1,5 +1,5 @@
 module.exports = {
     landingPage: function(req, res){
-        return res.render("home");
+        return res.render("./landing/landing.ejs");
     }
 }

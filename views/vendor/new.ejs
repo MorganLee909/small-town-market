@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <title>NEW VENDOR</title>
+        <link rel="stylesheet" href="../shared/shared.css">
+        <link rel="stylesheet" href="./new.css">
+    </head>
+    <body>
+        <h1>NEW VENDOR</h1>
+
+        <form action="/vendor" method="post">
+            <label>VENDOR NAME:
+                <input type="text" minlength="3" name="vendorName" required>
+            </label>
+
+            <label>OWNER FIRST NAME:
+                <input type="text" name="firstName" required>
+            </label>
+
+            <label>OWNER LAST NAME:
+                <input type="text" name="lastName" required>
+            </label>
+
+            <label>PASSWORD:
+                <input type="password" name="pass" minlength="10" required>
+            </label>
+
+            <label>CONFIRM PASSWORD:
+                <input type="password" name="confirmPass" minlength="10" required>
+            </label>
+
+            <label>BUSINESS DESCRIPTION:
+                <textarea name="description" cols="50" rows="10"></textarea>
+            </label>
+
+            <input class="button" type="submit" value="CREATE">
+        </form>
+    </body>
+</html>

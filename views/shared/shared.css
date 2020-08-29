@@ -1,0 +1,36 @@
+*{margin:0;padding:0}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(90, 69, 19, 0.6);
+}
+
+form{
+    background: rgba(28, 147, 62, 0.4);
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10%;
+    text-align: center;
+}
+
+    form label{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+.button{
+    background: rgb(176, 236, 255);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+    .button:hover{
+        background: rgb(79, 167, 193);
+    }
