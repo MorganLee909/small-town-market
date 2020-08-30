@@ -3,7 +3,12 @@
 body{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+.flexRow{
+    flex-direction: row;
 }
 
 form{
@@ -36,4 +41,29 @@ form{
 
     .button:active{
         box-shadow: 2px 2px 5px black;
+    }
+
+.capitalize{
+    text-transform: capitalize;
+}
+
+.iconButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px black;
+}
+
+    .iconButton:hover{
+        background: black;
+        color: white;
+    }
+
+    .iconButton:active{
+        box-shadow: none;
     }
