@@ -26,7 +26,6 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.pass, salt);
 
-        console.log(req.body);
         let newVendor = new Vendor({
             name: req.body.vendorName,
             firstName: req.body.firstName,

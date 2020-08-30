@@ -29,8 +29,13 @@ form{
     border-radius: 10px;
     font-size: 20px;
     cursor: pointer;
+    box-shadow: 5px 5px 5px black;
 }
 
     .button:hover{
         background: rgb(79, 167, 193);
+    }
+
+    .button:active{
+        box-shadow: 2px 2px 5px black;
     }
