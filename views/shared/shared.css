@@ -4,11 +4,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(90, 69, 19, 0.6);
 }
 
 form{
-    background: rgba(28, 147, 62, 0.4);
     padding: 30px;
     border: 1px solid black;
     border-radius: 10%;

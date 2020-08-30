@@ -5,7 +5,19 @@ const Validator = require("./validator.js");
 
 module.exports = {
     display: function(req, res){
-        console.log("displaying");
+        if(!req.session.user){
+            req.session.error = "YOU MUST BE LOGGED IN TO VIEW THAT PAGE";
+            return res.redirect("/");
+        }
+
+        Vendor.findOne({_id: req.session.user})
+            .then((vendor)=>{
+                return res.render("./vendor/display.ejs", {vendor: vendor});
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO FIND VENDOR";
+                return res.redirect("/");
+            });
     },
 
     new: function(req, res){
@@ -47,6 +59,34 @@ module.exports = {
                 console.log(err);
                 req.session.error = "ERROR: UNABLE TO CREATE NEW VENDOR AT THIS TIME";
                 return res.redirect("/vendor/new");
+            });
+    },
+
+    loginPage: function(req, res){
+        return res.render("./vendor/login.ejs");
+    },
+
+    login: function(req, res){
+        Vendor.findOne({email: req.body.email})
+            .then((vendor)=>{
+                if(vendor){
+                    bcrypt.compare(req.body.password, vendor.password, (err, result)=>{
+                        if(result){
+                            req.session.user = vendor._id;
+                            return res.redirect("/vendor");
+                        }else{
+                            req.session.error = "INCORRECT PASSWORD";
+                            return res.redirect("/login");
+                        }
+                    })
+                }else{
+                    req.session.error = "NO ACCOUNT EXISTS WITH THIS EMAIL";
+                    return res.redirect("/login");
+                }
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO LOG YOU IN AT THIS TIME";
+                return res.redirect("/");
             });
     }
 }
