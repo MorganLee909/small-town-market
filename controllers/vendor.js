@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 
 const Vendor = require("../models/vendor.js");
 const Validator = require("./validator.js");
+const Helper = require("./helper.js");
 
 module.exports = {
     display: function(req, res){
@@ -40,17 +41,6 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.pass, salt);
         
-        let url = req.body.vendorName.replace(/\W/g, "").toLowerCase();
-        let tempUrl = url;
-        let num = 0;
-        while(await Vendor.findOne({url: tempUrl})){
-            num++;
-            tempUrl = url + num;
-        }
-        if(num > 0){
-            url = tempUrl;
-        }
-
         let newVendor = new Vendor({
             name: req.body.vendorName,
             firstName: req.body.firstName.toLowerCase(),
@@ -61,7 +51,7 @@ module.exports = {
             city: req.body.city.toLowerCase(),
             description: req.body.description,
             password: hash,
-            url: url
+            url: await Helper.createURL(req.body.vendorName)
         });
 
         newVendor.save()
@@ -101,6 +91,50 @@ module.exports = {
             .catch((err)=>{
                 req.session.error = "ERROR: UNABLE TO LOG YOU IN AT THIS TIME";
                 return res.redirect("/");
+            });
+    },
+
+    edit: function(req, res){
+        Vendor.findOne({url: req.params.url})
+            .then((vendor)=>{
+                if(vendor._id.toString() !== req.session.user){
+                    req.session.error = "YOU CANNOT EDIT THIS VENDOR";
+                    return res.redirect(`/vendor/${req.params.url}`);
+                }
+
+                return res.render("./vendor/edit.ejs", {vendor: vendor});
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO LOAD THE PAGE";
+                return res.redirect(`/vendor/${req.params.url}`);
+            });
+    },
+
+    update: function(req, res){
+        Vendor.findOne({url: req.params.url})
+            .then(async (vendor)=>{
+                if(vendor._id.toString() !== req.session.user){
+                    req.session.error = "YOU CANNOT EDIT THIS VENDOR";
+                    return res.redirect(`/vendor/${req.params.url}`);
+                }
+
+                vendor.firstName = (req.body.firstName === "") ? vendor.firstName : req.body.firstName;
+                vendor.lastName = (req.body.lastName === "") ? vendor.lastName : req.body.lastName;
+                vendor.email = (req.body.email === "") ? vendor.email : req.body.email;
+                vendor.state = (req.body.state === "") ? vendor.state : req.body.state;
+                vendor.county = (req.body.county === "") ? vendor.county : req.body.county;
+                vendor.city = (req.body.city === "") ? vendor.city : req.body.city;
+                vendor.description = (req.body.description === "") ? vendor.description : req.body.description;
+                vendor.url = (req.body.url === "") ? vendor.url : await Helper.createURL(req.body.name);
+
+                return vendor.save();
+            })
+            .then((vendor)=>{
+                return res.redirect(`/vendor/${vendor.url}`);
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO UPDATE YOUR DATA AT THIS TIME";
+                return res.redirect(`/vendor/${req.params.url}`);
             });
     }
 }

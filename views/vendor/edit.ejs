@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <title><%= vendor.name %></title>
+        <link rel="stylesheet" href="../../shared/shared.css">
+        <link rel="stylesheet" href="../vendor.css">
+    </head>
+    <body>
+        <h1>Edit <%= vendor.name %></h1>
+
+        <form action="/vendor/<%=vendor.url%>" method="post">
+            <label>VENDOR NAME:
+                <input type="text" minlength="3" name="name" placeholder="<%-vendor.name%>">
+            </label>
+
+            <label>OWNER FIRST NAME:
+                <input type="text" name="firstName" placeholder="<%=vendor.firstName%>">
+            </label>
+
+            <label>OWNER LAST NAME:
+                <input type="text" name="lastName" placeholder="<%=vendor.lastName%>">
+            </label>
+
+            <label>EMAIL:
+                <input type="email" name="email" placeholder="<%=vendor.email%>">
+            </label>
+
+            <label>STATE:
+                <input type="string" name="state" placeholder="<%=vendor.state%>">
+            </label>
+
+            <label>COUNTY:
+                <input type="string" name="county" placeholder="<%=vendor.county%>">
+            </label>
+
+            <label>CITY/TOWN:
+                <input type="string" name="city" placeholder="<%=vendor.city%>">
+            </label>
+
+            <label>BUSINESS DESCRIPTION:
+                <textarea name="description" cols="50" rows="10" placeholder="<%=vendor.description%>""></textarea>
+            </label>
+
+            <input class="button" type="submit" value="UPDATE">
+        </form>
+    </body>
+</html>

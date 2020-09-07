@@ -57,6 +57,7 @@ form{
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 2px 2px 2px black;
+    color: black;
 }
 
     .iconButton:hover{

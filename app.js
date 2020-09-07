@@ -5,7 +5,7 @@ const compression = require("compression");
 
 const app = express();
 
-mongoose.connect(process.env.MORGAN_DB, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MARKET_DB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.set("view engine", "ejs");
 
