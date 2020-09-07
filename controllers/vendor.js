@@ -35,7 +35,7 @@ module.exports = {
 
         if(valid !== true){
             req.session.error = valid;
-            return res.redirect("/vendor/new");
+            return res.redirect("/vendors/new");
         }
 
         const salt = bcrypt.genSaltSync(10);
@@ -57,11 +57,11 @@ module.exports = {
         newVendor.save()
             .then((vendor)=>{
                 req.session.user = vendor._id;
-                return res.redirect(`/vendor/${vendor.url}`);
+                return res.redirect(`/vendors/${vendor.url}`);
             })
             .catch((err)=>{
                 req.session.error = "ERROR: UNABLE TO CREATE NEW VENDOR AT THIS TIME";
-                return res.redirect("/vendor/new");
+                return res.redirect("/vendors/new");
             });
     },
 
@@ -77,7 +77,7 @@ module.exports = {
                     bcrypt.compare(req.body.password, vendor.password, (err, result)=>{
                         if(result){
                             req.session.user = vendor._id;
-                            return res.redirect(`/vendor/${vendor.url}`);
+                            return res.redirect(`/vendors/${vendor.url}`);
                         }else{
                             req.session.error = "INCORRECT PASSWORD";
                             return res.redirect("/login");
@@ -99,14 +99,14 @@ module.exports = {
             .then((vendor)=>{
                 if(vendor._id.toString() !== req.session.user){
                     req.session.error = "YOU CANNOT EDIT THIS VENDOR";
-                    return res.redirect(`/vendor/${req.params.url}`);
+                    return res.redirect(`/vendors/${req.params.url}`);
                 }
 
                 return res.render("./vendor/edit.ejs", {vendor: vendor});
             })
             .catch((err)=>{
                 req.session.error = "ERROR: UNABLE TO LOAD THE PAGE";
-                return res.redirect(`/vendor/${req.params.url}`);
+                return res.redirect(`/vendors/${req.params.url}`);
             });
     },
 
@@ -115,7 +115,7 @@ module.exports = {
             .then(async (vendor)=>{
                 if(vendor._id.toString() !== req.session.user){
                     req.session.error = "YOU CANNOT EDIT THIS VENDOR";
-                    return res.redirect(`/vendor/${req.params.url}`);
+                    return res.redirect(`/vendors/${req.params.url}`);
                 }
 
                 vendor.firstName = (req.body.firstName === "") ? vendor.firstName : req.body.firstName;
@@ -130,11 +130,11 @@ module.exports = {
                 return vendor.save();
             })
             .then((vendor)=>{
-                return res.redirect(`/vendor/${vendor.url}`);
+                return res.redirect(`/vendors/${vendor.url}`);
             })
             .catch((err)=>{
                 req.session.error = "ERROR: UNABLE TO UPDATE YOUR DATA AT THIS TIME";
-                return res.redirect(`/vendor/${req.params.url}`);
+                return res.redirect(`/vendors/${req.params.url}`);
             });
     }
 }

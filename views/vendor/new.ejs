@@ -8,13 +8,15 @@
         <link rel="stylesheet" href="./vendor.css">
     </head>
     <body>
+        <%- include("../shared/menu.ejs") %>
+        
         <% if(error){ %>
             <h3><%= error %></h3>
         <% } %>
         
         <h1>NEW VENDOR</h1>
 
-        <form action="/vendor" method="post">
+        <form action="/vendors" method="post">
             <label>VENDOR NAME:
                 <input type="text" minlength="3" name="vendorName" required>
             </label>

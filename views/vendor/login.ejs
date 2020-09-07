@@ -8,9 +8,11 @@
         <link rel="stylesheet" href="./vendor.css">
     </head>
     <body>
+        <%- include("../shared/menu.ejs") %>
+        
         <h1>VENDOR LOGIN</h1>
 
-        <form action="/vendor/login" method="post">
+        <form action="/vendors/login" method="post">
             <label>EMAIL:
                 <input type="email" name="email" required>
             </label>

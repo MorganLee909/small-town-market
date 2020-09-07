@@ -2,6 +2,7 @@ body{
     display: flex;
     height: 100vh;
     width: 100vw;
+    box-sizing: border-box;
 }
 
 /*
@@ -27,8 +28,25 @@ DISPLAY PAGE
         text-align: justify;
     }
 
-.items{
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
     width: 70vw;
-    height: 100vh;
     overflow-y: auto;
 }
+
+    .absoluteButton{
+        position: absolute;
+        top: 125px;
+        left: 25px;
+        max-width: 150px;
+    }
+
+    .items{
+        width: 70vw;
+        height: 100vh;
+        overflow-y: auto;
+    }

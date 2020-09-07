@@ -3,11 +3,10 @@
 body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .flexRow{
+    display: flex;
     flex-direction: row;
 }
 
@@ -33,6 +32,10 @@ form{
     font-size: 20px;
     cursor: pointer;
     box-shadow: 5px 5px 5px black;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
 }
 
     .button:hover{
@@ -67,4 +70,27 @@ form{
 
     .iconButton:active{
         box-shadow: none;
+    }
+
+/* Menu */
+#menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background: rgb(90, 69, 19);
+    color: rgb(28, 147, 62);
+    margin-bottom: 50px;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+
+    .menuName{
+        padding: 5px;
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: bold;
+        color: rgb(28, 147, 62);
+        border: 1px solid rgb(28, 147, 62);
     }
