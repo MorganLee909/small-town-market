@@ -43,12 +43,12 @@ module.exports = {
         
         let newVendor = new Vendor({
             name: req.body.vendorName,
-            firstName: req.body.firstName.toLowerCase(),
-            lastName: req.body.lastName.toLowerCase(),
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email.toLowerCase(),
-            state: req.body.state.toLowerCase(),
-            county: req.body.county.toLowerCase(),
-            city: req.body.city.toLowerCase(),
+            state: req.body.state,
+            county: req.body.county,
+            city: req.body.city,
             description: req.body.description,
             password: hash,
             url: await Helper.createURL(req.body.vendorName)
@@ -120,7 +120,7 @@ module.exports = {
 
                 vendor.firstName = (req.body.firstName === "") ? vendor.firstName : req.body.firstName;
                 vendor.lastName = (req.body.lastName === "") ? vendor.lastName : req.body.lastName;
-                vendor.email = (req.body.email === "") ? vendor.email : req.body.email;
+                vendor.email = (req.body.email === "") ? vendor.email : req.body.email.toLowerCase();
                 vendor.state = (req.body.state === "") ? vendor.state : req.body.state;
                 vendor.county = (req.body.county === "") ? vendor.county : req.body.county;
                 vendor.city = (req.body.city === "") ? vendor.city : req.body.city;
