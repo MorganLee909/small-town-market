@@ -5,59 +5,61 @@
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <title>NEW VENDOR</title>
         <link rel="stylesheet" href="../shared/shared.css">
-        <link rel="stylesheet" href="./vendor.css">
+        <link rel="stylesheet" href="/vendor/vendor.css">
     </head>
     <body>
-        <%- include("../shared/menu.ejs") %>
-        
-        <% if(error){ %>
-            <h3><%= error %></h3>
-        <% } %>
-        
-        <h1>NEW VENDOR</h1>
+        <div id="newPage">
+            <%- include("../shared/menu.ejs") %>
+            
+            <% if(error){ %>
+                <h3><%= error %></h3>
+            <% } %>
+            
+            <h1>NEW VENDOR</h1>
 
-        <form action="/vendors" method="post">
-            <label>VENDOR NAME:
-                <input type="text" minlength="3" name="vendorName" required>
-            </label>
+            <form action="/vendors" method="post">
+                <label>VENDOR NAME:
+                    <input type="text" minlength="3" name="vendorName" required>
+                </label>
 
-            <label>OWNER FIRST NAME:
-                <input type="text" name="firstName" required>
-            </label>
+                <label>OWNER FIRST NAME:
+                    <input type="text" name="firstName" required>
+                </label>
 
-            <label>OWNER LAST NAME:
-                <input type="text" name="lastName" required>
-            </label>
+                <label>OWNER LAST NAME:
+                    <input type="text" name="lastName" required>
+                </label>
 
-            <label>EMAIL:
-                <input type="email" name="email" required>
-            </label>
+                <label>EMAIL:
+                    <input type="email" name="email" required>
+                </label>
 
-            <label>STATE:
-                <input type="string" name="state" required>
-            </label>
+                <label>STATE:
+                    <input type="string" name="state" required>
+                </label>
 
-            <label>COUNTY:
-                <input type="string" name="county" required>
-            </label>
+                <label>COUNTY:
+                    <input type="string" name="county" required>
+                </label>
 
-            <label>CITY/TOWN:
-                <input type="string" name="city" required>
-            </label>
+                <label>CITY/TOWN:
+                    <input type="string" name="city" required>
+                </label>
 
-            <label>PASSWORD:
-                <input type="password" name="pass" minlength="10" required>
-            </label>
+                <label>PASSWORD:
+                    <input type="password" name="pass" minlength="10" required>
+                </label>
 
-            <label>CONFIRM PASSWORD:
-                <input type="password" name="confirmPass" minlength="10" required>
-            </label>
+                <label>CONFIRM PASSWORD:
+                    <input type="password" name="confirmPass" minlength="10" required>
+                </label>
 
-            <label>BUSINESS DESCRIPTION:
-                <textarea name="description" cols="50" rows="10"></textarea>
-            </label>
+                <label>BUSINESS DESCRIPTION:
+                    <textarea name="description" cols="50" rows="10"></textarea>
+                </label>
 
-            <input class="button" type="submit" value="CREATE">
-        </form>
+                <input class="button" type="submit" value="CREATE">
+            </form>
+        </div>
     </body>
 </html>

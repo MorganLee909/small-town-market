@@ -136,5 +136,14 @@ module.exports = {
                 req.session.error = "ERROR: UNABLE TO UPDATE YOUR DATA AT THIS TIME";
                 return res.redirect(`/vendors/${req.params.url}`);
             });
+    },
+
+    newItems: function(req, res){
+        if(!req.session.user){
+            req.session.error = "YOU MUST BE LOGGED IN TO DO THAT";
+            return res.redirect("/");
+        }
+
+        return res.render("./vendor/newItems.ejs");
     }
 }

@@ -37,7 +37,12 @@ const VendorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description: String
+    description: String,
+    items: {
+        name: String,
+        description: String,
+        quantity: Number
+    }
 });
 
 module.exports = mongoose.model("Vendor", VendorSchema);
