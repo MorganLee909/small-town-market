@@ -16,5 +16,5 @@ module.exports = function(app){
     app.post("/vendors/login", vendor.login);
 
     //Items
-    app.get("/vendors/items/new", vendor.newItems);
+    app.get("/vendors/items/new", item.new);
 }

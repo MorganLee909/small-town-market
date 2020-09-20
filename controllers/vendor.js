@@ -5,24 +5,6 @@ const Validator = require("./validator.js");
 const Helper = require("./helper.js");
 
 module.exports = {
-    display: function(req, res){
-        Vendor.findOne({url: req.params.url})
-            .then((vendor)=>{
-                let data = {
-                    vendor: vendor,
-                    owner: false
-                }
-                if(req.session.user === vendor._id.toString()){
-                    data.owner = true;
-                }
-                return res.render("./vendor/display.ejs", data);
-            })
-            .catch((err)=>{
-                req.session.error = "ERROR: UNABLE TO FIND VENDOR";
-                return res.redirect("/");
-            });
-    },
-
     new: function(req, res){
         let error = (req.session.error) ? req.session.error : undefined;
         req.session.error = undefined;
@@ -65,31 +47,20 @@ module.exports = {
             });
     },
 
-    loginPage: function(req, res){
-        return res.render("./vendor/login.ejs");
-    },
-
-    login: function(req, res){
-        const email = req.body.email.toLowerCase();
-        Vendor.findOne({email: email})
+    display: function(req, res){
+        Vendor.findOne({url: req.params.url})
             .then((vendor)=>{
-                if(vendor){
-                    bcrypt.compare(req.body.password, vendor.password, (err, result)=>{
-                        if(result){
-                            req.session.user = vendor._id;
-                            return res.redirect(`/vendors/${vendor.url}`);
-                        }else{
-                            req.session.error = "INCORRECT PASSWORD";
-                            return res.redirect("/login");
-                        }
-                    })
-                }else{
-                    req.session.error = "NO ACCOUNT EXISTS WITH THIS EMAIL";
-                    return res.redirect("/login");
+                let data = {
+                    vendor: vendor,
+                    owner: false
                 }
+                if(req.session.user === vendor._id.toString()){
+                    data.owner = true;
+                }
+                return res.render("./vendor/display.ejs", data);
             })
             .catch((err)=>{
-                req.session.error = "ERROR: UNABLE TO LOG YOU IN AT THIS TIME";
+                req.session.error = "ERROR: UNABLE TO FIND VENDOR";
                 return res.redirect("/");
             });
     },
@@ -140,7 +111,7 @@ module.exports = {
     },
 
     destroy: function(req, res){
-        Vendor.deleteOne({url: req.params.url})
+        Vendor.deleteOne({_id: req.session.user})
             .then((response)=>{
                 return res.redirect("/");
             })
@@ -150,12 +121,32 @@ module.exports = {
             });
     },
 
-    newItems: function(req, res){
-        if(!req.session.user){
-            req.session.error = "YOU MUST BE LOGGED IN TO DO THAT";
-            return res.redirect("/");
-        }
+    loginPage: function(req, res){
+        return res.render("./vendor/login.ejs");
+    },
 
-        return res.render("./vendor/newItems.ejs");
+    login: function(req, res){
+        const email = req.body.email.toLowerCase();
+        Vendor.findOne({email: email})
+            .then((vendor)=>{
+                if(vendor){
+                    bcrypt.compare(req.body.password, vendor.password, (err, result)=>{
+                        if(result){
+                            req.session.user = vendor._id;
+                            return res.redirect(`/vendors/${vendor.url}`);
+                        }else{
+                            req.session.error = "INCORRECT PASSWORD";
+                            return res.redirect("/login");
+                        }
+                    })
+                }else{
+                    req.session.error = "NO ACCOUNT EXISTS WITH THIS EMAIL";
+                    return res.redirect("/login");
+                }
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO LOG YOU IN AT THIS TIME";
+                return res.redirect("/");
+            });
     }
 }
