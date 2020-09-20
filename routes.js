@@ -18,4 +18,5 @@ module.exports = function(app){
 
     //Items
     //"new" action is inside vendor display
+    app.post("/items", item.create);
 }

@@ -39,9 +39,8 @@ const VendorSchema = new mongoose.Schema({
     },
     description: String,
     items: {
-        name: String,
-        description: String,
-        quantity: Number
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Item"
     }
 });
 

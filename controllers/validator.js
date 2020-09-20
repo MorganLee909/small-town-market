@@ -35,6 +35,22 @@ module.exports = {
         return true;
     },
 
+    item: function(data){
+        if(!data.name || !data.price || !data.unit){
+            return "Must provide name, price and unit";
+        }
+
+        if(!this.isSanitary([data.name, data.unit, data.description])){
+            return "Data contains illegal characters [\\,<,>,$,(,),{,}]"
+        }
+
+        if(data.price < 0){
+            return "Price cannot be a negative number";
+        }
+
+        return true;
+    },
+
     isSanitary: function(strings){
         let disallowed = ["\\", "<", ">", "$", "{", "}", "(", ")"];
 
