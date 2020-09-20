@@ -5,7 +5,11 @@ const ItemSchema = new mongoose.Schema({
     price: Number,
     unit: String,
     quantity: Number,
-    description: String
+    description: String,
+    vendor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "vendor"
+    }
 });
 
 module.exports = mongoose.model("Item", ItemSchema);

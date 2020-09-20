@@ -21,7 +21,16 @@ module.exports = {
                     return res.redirect(`/vendor/${vendor.url}`);
                 }
 
-                return Item.create(req.body);
+                let item = {
+                    name: req.body.name,
+                    price: req.body.price,
+                    unit: req.body.unit,
+                    quantity: req.body.quantity,
+                    description: req.body.description,
+                    vendor: req.session.user
+                }
+
+                return Item.create(item);
             })
             .then((item)=>{
                 vendor.items.push(item);
@@ -34,6 +43,25 @@ module.exports = {
             .catch((err)=>{
                 req.session.error = "ERROR: UNABLE TO CREATE NEW ITEM AT THIS TIME";
                 return res.redirect(`/vendors/${vendor.url}`);
+            });
+    },
+
+    show: function(req, res){
+        Item.findOne({_id: req.params.id})
+            .then((item)=>{
+                data = {
+                    item: item
+                }
+
+                if(item.vendor.toString() === req.session.user){
+                    data.owner = true;
+                }
+
+                return res.render("./item/show.ejs", data);
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO FIND THAT ITEM";
+                return res.redirect("/");
             });
     }
 }
