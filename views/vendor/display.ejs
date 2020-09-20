@@ -35,12 +35,18 @@
 
                 <h1><%= vendor.name %></h1>
 
-                <h3 class="capitalize"><%= vendor.city %>, <%= vendor.state %></h3>
+                <h3 class="capitalize"><%=vendor.city%>, <%=vendor.state%></h3>
                 
-                <h3 class="capitalize"><%= vendor.county %> County</h3>
+                <h3 class="capitalize"><%=vendor.county%> County</h3>
 
-                <p class="desc"><%= vendor.description %></p>
+                <p class="desc"><%=vendor.description%></p>
             </div>
+        </div>
+
+        <div class="newItem modalHide">
+            <form action="/items" method="post">
+            
+            </form>
         </div>
     </body>
 </html>

@@ -1,5 +1,6 @@
 const home = require("./controllers/home.js");
 const vendor = require("./controllers/vendor.js");
+const item = require("./controllers/item.js");
 
 module.exports = function(app){
     app.get("/", home.landingPage);
@@ -16,5 +17,5 @@ module.exports = function(app){
     app.post("/vendors/login", vendor.login);
 
     //Items
-    app.get("/vendors/items/new", item.new);
+    //"new" action is inside vendor display
 }
