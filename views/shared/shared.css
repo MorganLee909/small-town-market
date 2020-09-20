@@ -8,7 +8,7 @@
 form{
     padding: 30px;
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 10px;
     text-align: center;
 }
 
@@ -22,11 +22,12 @@ form{
 .button{
     background: rgb(176, 236, 255);
     border: none;
+    margin: 5px;
     padding: 10px 15px;
     border-radius: 10px;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 3px 3px 3px black;
     text-decoration: none;
     color: black;
     font-size: 20px;
@@ -38,7 +39,7 @@ form{
     }
 
     .button:active{
-        box-shadow: 2px 2px 5px black;
+        box-shadow: 1px 1px 5px black;
     }
 
 .capitalize{
@@ -76,7 +77,6 @@ form{
     height: 100px;
     background: rgb(90, 69, 19);
     color: rgb(28, 147, 62);
-    margin-bottom: 50px;
     padding: 0 25px;
     box-sizing: border-box;
 }

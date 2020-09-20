@@ -4,39 +4,43 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <title><%= vendor.name %></title>
-        <link rel="stylesheet" href="../shared/shared.css">
-        <link rel="stylesheet" href="./vendor.css">
+        <link rel="icon" href="#">
+        <link rel="stylesheet" href="/shared/shared.css">
+        <link rel="stylesheet" href="/vendor/vendor.css">
     </head>
-    <body class="flexRow">
-        <div class="mainContent">
-            <%- include("../shared/menu.ejs") %>
+    <body>
+        <%- include("../shared/menu.ejs") %>
 
-            <a class="button absoluteButton" href="/vendors/items/new">New Item</a>
+        <div class="display">
+            <div class="mainContent">
+                <h2>ITEMS</h2>
 
-            <h2>ITEMS</h2>
-            <table>
-                <thead></thead>
-                <tbody></tbody>
-            </table>
+                <a class="button" href="/vendors/items/new">New Item</a>
+
+                <table>
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="sidebar">
+                <% if(owner === true){ %>
+                    <a class="iconButton editIcon" href="/vendors/<%=vendor.url%>/edit">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </a>
+                <% } %>
+
+                <h1><%= vendor.name %></h1>
+
+                <h3 class="capitalize"><%= vendor.city %>, <%= vendor.state %></h3>
+                
+                <h3 class="capitalize"><%= vendor.county %> County</h3>
+
+                <p class="desc"><%= vendor.description %></p>
+            </div>
         </div>
-
-        <div class="sidebar">
-            <% if(owner === true){ %>
-                <a class="iconButton editIcon" href="/vendors/<%=vendor.url%>/edit">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                    </svg>
-                </a>
-            <% } %>
-
-            <h1><%= vendor.name %></h1>
-
-            <h3 class="capitalize"><%= vendor.city %>, <%= vendor.state %></h3>
-            
-            <h3 class="capitalize"><%= vendor.county %> County</h3>
-
-            <p class="desc"><%= vendor.description %></p>
-        </div>  
     </body>
 </html>
