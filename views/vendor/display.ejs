@@ -15,7 +15,7 @@
             <div class="mainContent">
                 <h2>ITEMS</h2>
 
-                <a class="button" href="/vendors/items/new">New Item</a>
+                <button class="button" onclick="openModal()">NEW ITEM</button>
 
                 <table>
                     <thead></thead>
@@ -43,10 +43,47 @@
             </div>
         </div>
 
-        <div class="newItem modalHide">
+        <div id="newItem" class="modal modalHide">
             <form action="/items" method="post">
-            
+                <h1>NEW ITEM</h1>
+
+                <label>Name:
+                    <input type="text" name="name" required>
+                </label>
+
+                <label>Price:
+                    <input type="number" name="price" min="0" step="0.01" required>
+                </label>
+
+                <label>Measurement Unit:
+                    <input type="string" name="unit" required>
+                </label>
+
+                <label>Quantity:
+                    <input type="number" min="0" required>
+                </label>
+
+                <label>Description:
+                    <textarea name="description"></textarea>
+                </label>
+
+                <div>
+                    <input class="button" type="submit" value="SUBMIT">
+
+                    <button class="button" onclick="closeModal()">CANCEL</button>
+                </div>
             </form>
         </div>
+
+        <script>
+            const openModal = ()=>{
+                document.getElementById("newItem").classList.remove("modalHide");
+            }
+
+            const closeModal = ()=>{
+                event.preventDefault();
+                document.getElementById("newItem").classList.add("modalHide");
+            }
+        </script>
     </body>
 </html>

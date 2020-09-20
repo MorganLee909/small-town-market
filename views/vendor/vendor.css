@@ -59,6 +59,15 @@ DISPLAY
             text-align: justify;
         }
 
+    #newItem form{
+        background: white;
+    }
+
+    #newItem textarea{
+        width: 300px;
+        height: 150px;
+    }
+
 /*
 LOGIN
 */
