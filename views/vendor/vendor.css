@@ -23,6 +23,9 @@ DISPLAY
         position: relative;
         height: 100%;
         width: 70vw;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-sizing: border-box;
         overflow-y: auto;
     }
 
@@ -34,31 +37,57 @@ DISPLAY
         }
 
         .itemTable{
-            margin-top: 50px;
-            overflow-y: auto;
-            border-collapse: collapse;
+            display: flex;
+            flex-direction: column;
             box-shadow: 0 0 3px gray;
+            border-radius: 10px;
+            margin-top: 25px;
         }
 
-            .itemHead{
+            .itemTableHead{
+                display: flex;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
                 background: blue;
-                color: white;
-                height: 50px;
-                border-radius: 5px;
             }
 
-            .itemBody td{
-                width: 150px;
-                padding: 10px;
-                margin-bottom: 1px;
-                text-align: center;
+                .itemTableHead p{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    padding: 10px;
+                    height: 40px;
+                    width: 200px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+            .itemTableRow{
+                display: flex;
+                text-decoration: none;
+                color: black;
+                cursor: pointer;
             }
 
-            .itemBody tr:nth-child(odd){
-                background: rgb(232, 251, 252);
+                .itemTableRow:hover{
+                    z-index: 1;
+                    box-shadow: 0 0 3px black;
+                }
+
+            .itemTableRow:nth-child(even){
+                background: rgb(227, 249, 252);
             }
 
-
+                .itemTableRow p{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px;
+                    height: 40px;
+                    width: 200px;
+                    font-size: 18px;
+                }
 
     .sidebar{
         display: flex;

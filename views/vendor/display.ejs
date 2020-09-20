@@ -17,24 +17,20 @@
 
                 <button class="button" onclick="openModal()">NEW ITEM</button>
 
-                <table class="itemTable">
-                    <thead class="itemHead">
-                        <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>In Stock</th>
-                        </tr>
-                    </thead>
-                    <tbody class="itemBody">
-                        <% for(let i = 0; i < vendor.items.length; i++){ %>
-                            <tr>
-                                <td><%=vendor.items[i].name%></td>
-                                <td>$<%=vendor.items[i].price.toFixed(2)%> / <%=vendor.items[i].unit%></td>
-                                <td><%=vendor.items[i].quantity%> <%=vendor.items[i].unit%></td>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                </table>
+                <div class="itemTable">
+                    <div class="itemTableHead">
+                        <p>Item</p>
+                        <p>Price</p>
+                        <p>In Stock</p>
+                    </div>
+                    <% for(let i = 0; i < vendor.items.length; i++){ %>
+                        <a href="/items/<%=vendor.items[i]._id%>" class="itemTableRow">
+                            <p><%=vendor.items[i].name%></p>
+                            <p>$<%=vendor.items[i].price%> / <%=vendor.items[i].unit%></p>
+                            <p><%=vendor.items[i].quantity%> <%=vendor.items[i].unit%></p>
+                        </a>
+                    <% } %>
+                </div>
             </div>
 
             <div class="sidebar">
