@@ -139,6 +139,17 @@ module.exports = {
             });
     },
 
+    destroy: function(req, res){
+        Vendor.deleteOne({url: req.params.url})
+            .then((response)=>{
+                return res.redirect("/");
+            })
+            .catch((err)=>{
+                req.session.error = "ERROR: UNABLE TO DELETE ACCOUNT.  PLEASE TRY AGAIN LATER";
+                return res.redirect(`/vendors/${req.params.url}/edit`);
+            });
+    },
+
     newItems: function(req, res){
         if(!req.session.user){
             req.session.error = "YOU MUST BE LOGGED IN TO DO THAT";

@@ -42,6 +42,15 @@ form{
         box-shadow: 1px 1px 5px black;
     }
 
+    .red{
+        background: red;
+        color: white;
+    }
+
+        .red:hover{
+            background: red;
+        }
+
 .capitalize{
     text-transform: capitalize;
 }

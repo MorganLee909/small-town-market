@@ -48,6 +48,29 @@
 
                 <input class="button" type="submit" value="UPDATE">
             </form>
+
+            <button class="button red" onclick="openModal()">DELETE ACCOUNT</button>
         </div>
+
+        <div id="modal" class="modal modalHide">
+            <div class="modalContent">
+                <h1>Are you sure that you want to delete your account?  This cannot be undone.</h1>
+                <div>
+                    <a href="/vendors/<%=vendor.url%>/destroy" class="button red">DELETE</a>
+
+                    <button class="button" onclick="closeModal()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const openModal = ()=>{
+                document.getElementById("modal").classList.remove("modalHide");
+            }
+
+            const closeModal = ()=>{
+                document.getElementById("modal").classList.add("modalHide");
+            }
+        </script>
     </body>
 </html>
