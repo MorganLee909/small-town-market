@@ -118,6 +118,7 @@ module.exports = {
                     return res.redirect(`/vendors/${req.params.url}`);
                 }
 
+                vendor.name = (req.body.name === "") ? vendor.name : req.body.name;
                 vendor.firstName = (req.body.firstName === "") ? vendor.firstName : req.body.firstName;
                 vendor.lastName = (req.body.lastName === "") ? vendor.lastName : req.body.lastName;
                 vendor.email = (req.body.email === "") ? vendor.email : req.body.email.toLowerCase();
