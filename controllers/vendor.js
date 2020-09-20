@@ -49,6 +49,7 @@ module.exports = {
 
     display: function(req, res){
         Vendor.findOne({url: req.params.url})
+            .populate("items")
             .then((vendor)=>{
                 let data = {
                     vendor: vendor,

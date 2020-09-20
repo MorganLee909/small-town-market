@@ -33,11 +33,32 @@ DISPLAY
             max-width: 150px;
         }
 
-        .items{
-            width: 70vw;
-            height: 100vh;
+        .itemTable{
+            margin-top: 50px;
             overflow-y: auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 3px gray;
         }
+
+            .itemHead{
+                background: blue;
+                color: white;
+                height: 50px;
+                border-radius: 5px;
+            }
+
+            .itemBody td{
+                width: 150px;
+                padding: 10px;
+                margin-bottom: 1px;
+                text-align: center;
+            }
+
+            .itemBody tr:nth-child(odd){
+                background: rgb(232, 251, 252);
+            }
+
+
 
     .sidebar{
         display: flex;

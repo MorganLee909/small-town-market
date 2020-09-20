@@ -48,6 +48,10 @@ module.exports = {
             return "Price cannot be a negative number";
         }
 
+        if(data.quantity < 0){
+            return "Cannot have a negative quantity";
+        }
+
         return true;
     },
 

@@ -38,10 +38,10 @@ const VendorSchema = new mongoose.Schema({
         required: true
     },
     description: String,
-    items: {
+    items: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Item"
-    }
+    }]
 });
 
 module.exports = mongoose.model("Vendor", VendorSchema);

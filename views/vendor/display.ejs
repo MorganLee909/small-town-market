@@ -17,9 +17,23 @@
 
                 <button class="button" onclick="openModal()">NEW ITEM</button>
 
-                <table>
-                    <thead></thead>
-                    <tbody></tbody>
+                <table class="itemTable">
+                    <thead class="itemHead">
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>In Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody class="itemBody">
+                        <% for(let i = 0; i < vendor.items.length; i++){ %>
+                            <tr>
+                                <td><%=vendor.items[i].name%></td>
+                                <td>$<%=vendor.items[i].price.toFixed(2)%> / <%=vendor.items[i].unit%></td>
+                                <td><%=vendor.items[i].quantity%> <%=vendor.items[i].unit%></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
                 </table>
             </div>
 
@@ -60,7 +74,7 @@
                 </label>
 
                 <label>Quantity:
-                    <input type="number" min="0" required>
+                    <input type="number" name="quantity" min="0" required>
                 </label>
 
                 <label>Description:
